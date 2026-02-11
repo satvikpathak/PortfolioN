@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --font-sans: 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------- Dark mode (default) ---------- */
+:root {
+  --background: #121212;
+  --foreground: #e8e4de;
+  --primary: #d4cfc8;
+  --primary-light: #e8e4de;
+  --accent: #a8a29e;
+  --muted: #5c5955;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --sidebar-bg: rgba(18, 18, 18, 0.9);
+}
+
+/* ---------- Light mode ---------- */
+.light {
+  --background: #f2efe9;
+  --foreground: #2c2a27;
+  --primary: #3d3a36;
+  --primary-light: #5c5955;
+  --accent: #78736d;
+  --muted: #a09a93;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --sidebar-bg: rgba(242, 239, 233, 0.9);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 2px;
+}
+
+/* ---------- Glass ---------- */
+.glass {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ---------- Gradient text ---------- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--foreground), var(--muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Page transitions ---------- */
+.page-content {
+  animation: pageIn 0.5s ease-out forwards;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--foreground);
+  color: var(--background);
 }

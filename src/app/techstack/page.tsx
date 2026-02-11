@@ -1,0 +1,66 @@
+"use client";
+
+import ClientShell from "@/components/ClientShell";
+import {
+  SiNextdotjs,
+  SiTailwindcss,
+  SiAmazonwebservices,
+  SiPrisma,
+  SiGooglegemini,
+} from "react-icons/si";
+import { TbDatabase, TbMathFunction } from "react-icons/tb";
+
+const techs = [
+  { name: "Next.js", icon: SiNextdotjs, desc: "React framework for production" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, desc: "Utility-first CSS framework" },
+  { name: "AWS", icon: SiAmazonwebservices, desc: "Cloud infrastructure & services" },
+  { name: "Neon DB", icon: TbDatabase, desc: "Serverless Postgres database" },
+  { name: "Prisma", icon: SiPrisma, desc: "Next-gen Node.js ORM" },
+  { name: "Gemini API", icon: SiGooglegemini, desc: "Google's generative AI" },
+  { name: "MATLAB", icon: TbMathFunction, desc: "Numerical computing platform" },
+];
+
+export default function TechStackPage() {
+  return (
+    <ClientShell>
+      <div className="space-y-10">
+        <div>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            Tech <span className="gradient-text">Stack</span>
+          </h1>
+          <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
+            The tools and technologies I use to bring ideas to life.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {techs.map((tech, i) => (
+            <div
+              key={tech.name}
+              className="glass rounded-2xl p-5 flex items-start gap-4 group
+                         hover:shadow-lg hover:shadow-[var(--primary)]/10
+                         transition-all duration-300 cursor-default"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
+              <div
+                className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center
+                           transition-transform duration-300 group-hover:scale-110"
+                style={{ background: "linear-gradient(135deg, var(--primary), var(--accent))" }}
+              >
+                <tech.icon className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: "var(--foreground)" }}>
+                  {tech.name}
+                </h3>
+                <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
+                  {tech.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </ClientShell>
+  );
+}
