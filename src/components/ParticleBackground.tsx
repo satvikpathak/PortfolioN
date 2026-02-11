@@ -1,197 +1,146 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
+import { useEffect, useRef } from "react";
 import { useTheme } from "./ThemeProvider";
 
+interface Particle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  opacity: number;
+}
+
 export default function ParticleBackground() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const animationFrameId = useRef<number | undefined>(undefined);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const particlesRef = useRef<Particle[]>([]);
   const { theme } = useTheme();
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 30;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    let animationFrameId: number;
 
-    // Noise texture (for wireframe plane displacement)
-    const noiseCanvas = generateNoiseTexture();
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-    // Wireframe plane
-    const wireframePlane = createWireframePlane(noiseCanvas, theme);
-    scene.add(wireframePlane);
+    const createParticles = (): Particle[] => {
+      const particles: Particle[] = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
 
-    // Particles
-    const particles = createParticles(theme);
-    scene.add(particles);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          opacity: Math.random() * 0.5 + 0.2,
+        });
+      }
+      return particles;
+    };
 
-    // Animation variables
-    let opacity = 0;
-    const fadeInSpeed = 0.02;
-    let frame = 0;
-    const mouse = { x: 0, y: 0 };
+    const drawParticles = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Event listeners
-    const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = (event.clientX - window.innerWidth / 2) / 500;
-      mouse.y = (event.clientY - window.innerHeight / 2) / 500;
+      const isDark = theme === "dark";
+      const particleColor = isDark ? "156, 163, 175" : "107, 114, 128";
+      const connectionColor = isDark ? "75, 85, 99" : "156, 163, 175";
+
+      particlesRef.current.forEach((particle, i) => {
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleColor}, ${particle.opacity})`;
+        ctx.fill();
+
+        // Draw connections to nearby particles
+        particlesRef.current.slice(i + 1).forEach((otherParticle) => {
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.strokeStyle = `rgba(${connectionColor}, ${0.1 * (1 - distance / 100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+
+        // Mouse interaction — repel particles
+        const mouseDistance = Math.sqrt(
+          Math.pow(particle.x - mouseRef.current.x, 2) +
+            Math.pow(particle.y - mouseRef.current.y, 2)
+        );
+
+        if (mouseDistance < 150) {
+          const force = (150 - mouseDistance) / 150;
+          const angle = Math.atan2(
+            particle.y - mouseRef.current.y,
+            particle.x - mouseRef.current.x
+          );
+          particle.x += Math.cos(angle) * force * 2;
+          particle.y += Math.sin(angle) * force * 2;
+        }
+
+        // Update position
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+      });
+    };
+
+    const animate = () => {
+      drawParticles();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
     };
 
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      resizeCanvas();
+      particlesRef.current = createParticles();
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", handleResize);
-
-    // Animation loop
-    const animate = () => {
-      if (!containerRef.current) return;
-
-      animationFrameId.current = requestAnimationFrame(animate);
-      frame += 0.002;
-
-      if (opacity < 1) {
-        opacity = Math.min(opacity + fadeInSpeed, 1);
-        updateOpacities(
-          wireframePlane.material as THREE.MeshBasicMaterial,
-          particles.material as THREE.PointsMaterial,
-          opacity,
-          theme
-        );
-        if (containerRef.current) {
-          const blur = Math.max(0, 10 * (1 - opacity));
-          containerRef.current.style.filter = `blur(${blur}px)`;
-        }
-        if (opacity === 1 && !isLoaded) setIsLoaded(true);
-      }
-
-      wireframePlane.rotation.z = Math.sin(frame) * 0.05;
-      particles.rotation.x += mouse.y * 0.01 + 0.0005;
-      particles.rotation.y += mouse.x * 0.01 + 0.0003;
-
-      renderer.render(scene, camera);
-    };
+    resizeCanvas();
+    particlesRef.current = createParticles();
     animate();
 
-    // Cleanup
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
-      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
-      if (containerRef.current) containerRef.current.removeChild(renderer.domElement);
-      scene.clear();
-      renderer.dispose();
     };
   }, [theme]);
 
   return (
-    <div
-      ref={containerRef}
-      className={`fixed inset-0 -z-10 transition-opacity duration-1000 ${
-        isLoaded ? "opacity-100" : "opacity-0"
-      }`}
-      style={{ pointerEvents: "none" }}
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0"
+      style={{ background: "transparent", pointerEvents: "none", zIndex: 0 }}
     />
   );
-}
-
-// ── Helper functions ───────────────────────────────
-
-function generateNoiseTexture(): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
-  canvas.width = 256;
-  canvas.height = 256;
-  const ctx = canvas.getContext("2d")!;
-  const imageData = ctx.createImageData(256, 256);
-
-  for (let i = 0; i < imageData.data.length; i += 4) {
-    const value = Math.random() * 255;
-    imageData.data[i] = value;
-    imageData.data[i + 1] = value;
-    imageData.data[i + 2] = value;
-    imageData.data[i + 3] = 255;
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-  ctx.filter = "blur(8px)";
-  ctx.drawImage(canvas, 0, 0);
-  return canvas;
-}
-
-function createWireframePlane(noiseCanvas: HTMLCanvasElement, theme: "dark" | "light"): THREE.Mesh {
-  const geometry = new THREE.PlaneGeometry(50, 50, 128, 128);
-  const material = new THREE.MeshBasicMaterial({
-    color: theme === "dark" ? 0x111111 : 0xf0f0f0,
-    wireframe: true,
-    transparent: true,
-    opacity: theme === "dark" ? 0.8 : 0.2,
-  });
-
-  const count = geometry.attributes.position.count;
-  const damping = 2.5;
-  const ctx = noiseCanvas.getContext("2d")!;
-
-  for (let i = 0; i < count; i++) {
-    const x = geometry.attributes.position.getX(i);
-    const y = geometry.attributes.position.getY(i);
-    const xNorm = (x + 25) / 50;
-    const yNorm = (y + 25) / 50;
-    const color =
-      ctx.getImageData(Math.floor(xNorm * 256), Math.floor(yNorm * 256), 1, 1)
-        .data[0] / 255;
-    geometry.attributes.position.setZ(i, (color - 0.5) * damping);
-  }
-  geometry.computeVertexNormals();
-
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = -Math.PI / 3;
-  return mesh;
-}
-
-function createParticles(theme: "dark" | "light"): THREE.Points {
-  const geometry = new THREE.BufferGeometry();
-  const count = 800;
-  const positions = new Float32Array(count * 3);
-
-  for (let i = 0; i < count * 3; i++) {
-    positions[i] = (Math.random() - 0.5) * 50;
-  }
-
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  const material = new THREE.PointsMaterial({
-    size: 0.06,
-    sizeAttenuation: true,
-    color: theme === "dark" ? 0xffffff : 0x000000,
-    transparent: true,
-    opacity: 0.5,
-  });
-
-  return new THREE.Points(geometry, material);
-}
-
-function updateOpacities(
-  wireframeMat: THREE.MeshBasicMaterial,
-  particleMat: THREE.PointsMaterial,
-  opacity: number,
-  theme: "dark" | "light"
-) {
-  wireframeMat.opacity = (theme === "dark" ? 0.8 : 0.2) * opacity;
-  particleMat.opacity = 0.5 * opacity;
 }

@@ -74,7 +74,7 @@ export default function Sidebar() {
         </nav>
 
         {/* Theme toggle at bottom */}
-        <div className="flex flex-col items-start gap-3">
+        <div className="flex flex-col items-start gap-2">
           <button
             onClick={toggleTheme}
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200
@@ -95,6 +95,14 @@ export default function Sidebar() {
               </>
             )}
           </button>
+          {theme === "light" && (
+            <span
+              className="text-[9px] leading-tight px-3 opacity-50"
+              style={{ color: "var(--muted)" }}
+            >
+              Switch to dark mode for best experience 
+            </span>
+          )}
         </div>
       </aside>
     </>

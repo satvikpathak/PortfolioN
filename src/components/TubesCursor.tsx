@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "./ThemeProvider";
 
 interface TubesCursorApp {
   tubes: {
@@ -13,8 +14,11 @@ interface TubesCursorApp {
 export default function TubesCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const appRef = useRef<TubesCursorApp | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
+    // Only run in dark mode
+    if (theme === "light") return;
     if (!canvasRef.current) return;
 
     let destroyed = false;
@@ -55,9 +59,12 @@ export default function TubesCursor() {
       destroyed = true;
       if (appRef.current?.dispose) {
         appRef.current.dispose();
+        appRef.current = null;
       }
     };
-  }, []);
+  }, [theme]);
+
+  if (theme === "light") return null;
 
   return (
     <canvas
@@ -74,6 +81,7 @@ export default function TubesCursor() {
         zIndex: -1,
         pointerEvents: "auto",
         overflow: "hidden",
+        mixBlendMode: "screen",
       }}
     />
   );
