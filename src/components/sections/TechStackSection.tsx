@@ -1,13 +1,20 @@
 "use client";
 
 import {
-  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
   SiTailwindcss,
-  SiAmazonwebservices,
-  SiPrisma,
-  SiGooglegemini,
+  SiBootstrap,
+  SiReact,
+  SiNodedotjs,
+  SiGit,
+  SiGithub,
+  SiCplusplus,
+  SiC,
+  SiPython,
+  SiWordpress,
 } from "react-icons/si";
-import { TbDatabase, TbMathFunction } from "react-icons/tb";
 import type { IconType } from "react-icons";
 
 interface Tech {
@@ -17,13 +24,19 @@ interface Tech {
 }
 
 const techs: Tech[] = [
-  { name: "Next.js", icon: SiNextdotjs, desc: "React framework for production" },
+  { name: "HTML5", icon: SiHtml5, desc: "Markup & semantic structure" },
+  { name: "CSS3", icon: SiCss3, desc: "Styling & responsive design" },
+  { name: "JavaScript", icon: SiJavascript, desc: "Core web programming language" },
   { name: "Tailwind CSS", icon: SiTailwindcss, desc: "Utility-first CSS framework" },
-  { name: "AWS", icon: SiAmazonwebservices, desc: "Cloud infrastructure & services" },
-  { name: "Neon DB", icon: TbDatabase, desc: "Serverless Postgres database" },
-  { name: "Prisma", icon: SiPrisma, desc: "Next-gen Node.js ORM" },
-  { name: "Gemini API", icon: SiGooglegemini, desc: "Google's generative AI" },
-  { name: "MATLAB", icon: TbMathFunction, desc: "Numerical computing platform" },
+  { name: "Bootstrap", icon: SiBootstrap, desc: "Component-based CSS framework" },
+  { name: "React", icon: SiReact, desc: "UI component library" },
+  { name: "Node.js", icon: SiNodedotjs, desc: "Server-side JavaScript runtime" },
+  { name: "Git", icon: SiGit, desc: "Version control system" },
+  { name: "GitHub", icon: SiGithub, desc: "Code hosting & collaboration" },
+  { name: "C++", icon: SiCplusplus, desc: "Systems & competitive programming" },
+  { name: "C", icon: SiC, desc: "Low-level systems programming" },
+  { name: "Python", icon: SiPython, desc: "Scripting & automation" },
+  { name: "WordPress", icon: SiWordpress, desc: "CMS & website builder" },
 ];
 
 export default function TechStackSection() {
@@ -31,10 +44,10 @@ export default function TechStackSection() {
     <div className="space-y-10">
       <div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-          Tech <span className="gradient-text">Stack</span>
+          Tech <span className="gradient-text">Stack</span> & Tools
         </h1>
         <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
-          The tools and technologies I use to bring ideas to life.
+          The technologies and tools I use to bring ideas to life.
         </p>
       </div>
 

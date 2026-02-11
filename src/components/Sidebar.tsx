@@ -1,92 +1,87 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
-import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import { FiSun, FiMoon } from "react-icons/fi";
+import {
+  HiHome,
+  HiCode,
+  HiFolder,
+  HiStar,
+  HiAcademicCap,
+  HiMail,
+} from "react-icons/hi";
+import type { SectionId } from "./ClientShell";
+import type { IconType } from "react-icons";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Tech Stack", href: "/techstack" },
-  { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "/experience" },
-  { label: "Certificates", href: "/certificates" },
-  { label: "Contact", href: "/contact" },
+interface SidebarProps {
+  activeSection: SectionId;
+  onNavigate: (section: SectionId) => void;
+}
+
+interface NavItem {
+  label: string;
+  id: SectionId;
+  icon: IconType;
+}
+
+const navLinks: NavItem[] = [
+  { label: "Home", id: "home", icon: HiHome },
+  { label: "Tech Stack", id: "techstack", icon: HiCode },
+  { label: "Projects", id: "projects", icon: HiFolder },
+  { label: "Experience", id: "experience", icon: HiStar },
+  { label: "Certificates", id: "certificates", icon: HiAcademicCap },
+  { label: "Contact", id: "contact", icon: HiMail },
 ];
 
-export default function Sidebar() {
-  const pathname = usePathname();
+export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
   const { theme, toggleTheme } = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      {/* Mobile hamburger */}
-      <button
-        onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-5 left-5 z-[60] md:hidden p-2.5 rounded-xl glass"
-        aria-label="Toggle menu"
-      >
-        {mobileOpen ? (
-          <FiX className="w-5 h-5" style={{ color: "var(--foreground)" }} />
-        ) : (
-          <FiMenu className="w-5 h-5" style={{ color: "var(--foreground)" }} />
-        )}
-      </button>
-
-      {/* Backdrop for mobile */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-[49] bg-black/50 md:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 h-full z-50 flex flex-col justify-between
-                     py-10 px-5 w-48 transition-transform duration-300
-                     md:translate-x-0
-                     ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}
-        style={{ background: "var(--sidebar-bg)", backdropFilter: "blur(20px)" }}
-      >
-        {/* Nav links */}
-        <nav className="mt-14 md:mt-6 flex flex-col gap-1">
+      {/* ── Desktop: floating bullet nav on the left ── */}
+      <aside className="hidden md:flex fixed top-0 left-0 h-full z-50 flex-col justify-between py-10 px-5 w-48">
+        {/* Nav items — clean bullets, no background panel */}
+        <nav className="mt-6 flex flex-col gap-1">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive = activeSection === link.id;
             return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+              <button
+                key={link.id}
+                onClick={() => onNavigate(link.id)}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+                            transition-all duration-200 text-left
                   ${
                     isActive
-                      ? "text-[var(--primary)] bg-[var(--primary)]/8"
-                      : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-white/5"
+                      ? "text-[var(--foreground)]"
+                      : "text-[var(--muted)] hover:text-[var(--foreground)]"
                   }`}
               >
+                {/* Bullet dot */}
+                <span
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-200"
+                  style={{
+                    background: isActive ? "var(--foreground)" : "var(--muted)",
+                    transform: isActive ? "scale(1.4)" : "scale(1)",
+                  }}
+                />
                 {link.label}
-              </Link>
+              </button>
             );
           })}
         </nav>
 
-        {/* Theme toggle at bottom */}
+        {/* Theme toggle */}
         <div className="flex flex-col items-start gap-2">
           <button
             onClick={toggleTheme}
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200
-                       text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-white/5"
+                       text-[var(--muted)] hover:text-[var(--foreground)]"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
               <>
                 <FiSun className="w-3.5 h-3.5" />
-                <span className="tracking-widest uppercase" style={{ writingMode: "horizontal-tb" }}>
-                  Light
-                </span>
+                <span className="tracking-widest uppercase">Light</span>
               </>
             ) : (
               <>
@@ -100,11 +95,58 @@ export default function Sidebar() {
               className="text-[9px] leading-tight px-3 opacity-50"
               style={{ color: "var(--muted)" }}
             >
-              Switch to dark mode for best experience 
+              Switch to dark mode for best experience
             </span>
           )}
         </div>
       </aside>
+
+      {/* ── Mobile: fixed bottom bar with icons ── */}
+      <nav
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around
+                   py-2 px-1"
+        style={{
+          background: "var(--sidebar-bg)",
+          backdropFilter: "blur(20px)",
+          borderTop: "1px solid var(--card-border)",
+        }}
+      >
+        {navLinks.map((link) => {
+          const isActive = activeSection === link.id;
+          const Icon = link.icon;
+          return (
+            <button
+              key={link.id}
+              onClick={() => onNavigate(link.id)}
+              className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-all duration-200
+                ${
+                  isActive
+                    ? "text-[var(--foreground)]"
+                    : "text-[var(--muted)]"
+                }`}
+              aria-label={link.label}
+            >
+              <Icon className="w-5 h-5" />
+              <span className="text-[8px] font-medium leading-none">{link.label}</span>
+            </button>
+          );
+        })}
+
+        {/* Theme toggle in mobile bar */}
+        <button
+          onClick={toggleTheme}
+          className="flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-all duration-200
+                     text-[var(--muted)]"
+          aria-label="Toggle theme"
+        >
+          {theme === "dark" ? (
+            <FiSun className="w-5 h-5" />
+          ) : (
+            <FiMoon className="w-5 h-5" />
+          )}
+          <span className="text-[8px] font-medium leading-none">Theme</span>
+        </button>
+      </nav>
     </>
   );
 }

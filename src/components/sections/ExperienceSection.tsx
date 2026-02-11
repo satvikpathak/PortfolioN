@@ -1,6 +1,6 @@
 "use client";
 
-import { HiAcademicCap, HiShieldCheck, HiStar, HiTrendingUp } from "react-icons/hi";
+import { HiAcademicCap, HiCode, HiStar } from "react-icons/hi";
 import type { IconType } from "react-icons";
 
 interface TimelineItem {
@@ -15,33 +15,25 @@ const timeline: TimelineItem[] = [
   {
     icon: HiAcademicCap,
     title: "B.Tech — Computer Science & Engineering",
-    subtitle: "7th Semester • 8.5 CGPA",
+    subtitle: "2nd Year • Undergraduate",
     description:
-      "Specializing in full-stack development, cloud computing, and AI/ML. Consistently on the Dean's list with a focus on building production-grade software.",
-    period: "2022 – Present",
+      "Building a strong foundation in programming languages like C, C++, JavaScript, and Python. Continuously improving skills in Data Structures and Algorithms (DSA) while diving into backend development with Node.js and the MERN stack.",
+    period: "2023 – Present",
   },
   {
-    icon: HiShieldCheck,
-    title: "TGC-144 Indian Army Entry",
-    subtitle: "Technical Graduate Commission",
+    icon: HiCode,
+    title: "MERN Stack Development",
+    subtitle: "Full Stack Web Development",
     description:
-      "Actively preparing for the TGC-144 entry to serve in the Indian Army as a Technical Officer, combining engineering expertise with national service.",
-    period: "2025",
-  },
-  {
-    icon: HiStar,
-    title: "Full-Stack AI Applications",
-    subtitle: "Career Pathfinder • AutoClient",
-    description:
-      "Designed and deployed AI-integrated platforms using AWS, Gemini API, and modern web frameworks, demonstrating end-to-end product development capability.",
+      "Focused on mastering the MERN stack (MongoDB, Express, React, Node.js). Building real-world projects including ecommerce layouts, hackathon platforms, and interactive web applications.",
     period: "2024 – Present",
   },
   {
-    icon: HiTrendingUp,
-    title: "Cloud & DevOps Proficiency",
-    subtitle: "AWS • Serverless • CI/CD",
+    icon: HiStar,
+    title: "Open Source & Problem Solving",
+    subtitle: "GitHub • LeetCode",
     description:
-      "Built serverless architectures with AWS Lambda, DynamoDB, and S3. Experienced in infrastructure-as-code and automated deployment pipelines.",
+      "Actively contributing to GitHub with exciting projects and practicing problem-solving on LeetCode. Enjoy building innovative solutions and learning new technologies to stay ahead in the fast-paced tech world.",
     period: "2024 – Present",
   },
 ];

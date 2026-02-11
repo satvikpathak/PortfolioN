@@ -12,20 +12,32 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Career Pathfinder",
+    title: "EntreConnect",
     description:
-      "A full-stack AI-integrated career guidance platform that helps users discover optimal career paths through intelligent assessments, personalized recommendations, and AWS-powered resource aggregation.",
-    tags: ["Next.js", "AWS", "Gemini AI", "DynamoDB", "Lambda"],
-    liveUrl: "#",
-    codeUrl: "#",
+      "Empowering young startup founders with mentorship, industry connections, and AI-driven growth.",
+    tags: ["Next.js", "Prisma", "Postgres", "Tailwind CSS"],
+    codeUrl: "https://github.com/satvikpathak/pec-hackathon/tree/main",
   },
   {
-    title: "AutoClient",
+    title: "Hackathon Club Website",
     description:
-      "An automated freelancing client acquisition pipeline that discovers potential clients, analyzes their needs using AI, and generates personalized outreach — streamlining the entire sales development process.",
-    tags: ["Next.js", "Neon DB", "Prisma", "Gemini API", "Firecrawl"],
-    liveUrl: "#",
-    codeUrl: "#",
+      "A fully functioning talent sharing and hackathon locating website at your disposal.",
+    tags: ["HTML", "CSS", "React", "Node.js", "MongoDB", "Tailwind CSS"],
+    liveUrl: "https://hc-frontend-five.vercel.app/",
+  },
+  {
+    title: "Shopping Cart",
+    description:
+      "Basic ecommerce website layout using TypeScript.",
+    tags: ["TypeScript", "React", "Node.js", "MongoDB", "Tailwind CSS"],
+    liveUrl: "https://shopping-cart-six-dusky.vercel.app/",
+  },
+  {
+    title: "Hangman",
+    description:
+      "Hangman word guessing game using TypeScript.",
+    tags: ["TypeScript", "React", "Node.js", "MongoDB", "Tailwind CSS"],
+    liveUrl: "https://hangman-cyan-mu.vercel.app/",
   },
 ];
 
