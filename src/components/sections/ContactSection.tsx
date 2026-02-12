@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { HiPaperAirplane } from "react-icons/hi";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMail, FiFileText } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 import type { IconType } from "react-icons";
@@ -122,6 +122,18 @@ export default function ContactSection() {
               <s.icon className="w-5 h-5 sm:w-6 sm:h-6 hover:opacity-100 transition-opacity" />
             </a>
           ))}
+          <div className="w-px h-8 bg-[var(--foreground)]/20 mx-1" />
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Resume"
+            className="p-3 rounded-xl glass transition-all duration-300 hover:scale-110
+                       hover:shadow-lg hover:shadow-[var(--foreground)]/10"
+            style={{ color: "var(--foreground)", opacity: 0.6 }}
+          >
+            <FiFileText className="w-5 h-5 sm:w-6 sm:h-6 hover:opacity-100 transition-opacity" />
+          </a>
         </div>
       </div>
     </div>
