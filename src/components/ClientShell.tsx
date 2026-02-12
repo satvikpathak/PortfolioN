@@ -43,15 +43,21 @@ export default function ClientShell() {
       <Sidebar activeSection={activeSection} onNavigate={setActiveSection} />
 
       <main className="md:ml-48 h-screen flex flex-col pb-16 md:pb-0">
-        {/* Persistent header — always visible, never scrolls */}
-        <div className="flex-shrink-0 w-full max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 pt-12 sm:pt-16 pb-4">
+        {/* Persistent header — slides left on non-home sections */}
+        <motion.div
+          layout
+          className={`flex-shrink-0 w-full px-6 sm:px-10 lg:px-16 pt-12 sm:pt-16 pb-4 ${
+            activeSection === "home" ? "max-w-5xl mx-auto" : ""
+          }`}
+          transition={{ layout: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } }}
+        >
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
             <span className="gradient-text">Satvik Pathak</span>
           </h1>
           <p className="text-sm sm:text-base mt-1.5" style={{ color: "var(--muted)" }}>
             Developer
           </p>
-        </div>
+        </motion.div>
 
         {/* Scrollable section content */}
         <div className="flex-1 overflow-y-auto">

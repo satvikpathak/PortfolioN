@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -11,19 +15,27 @@
   --color-card-border: var(--card-border);
   --font-sans: 'Satoshi', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 /* ---------- Dark mode (default) ---------- */
 :root {
   --background: #181818;
   --foreground: #e8e4de;
-  --primary: #d4cfc8;
+  --primary: #d4d0c8;
   --primary-light: #e8e4de;
-  --accent: #a8a29e;
-  --muted: #5c5955;
-  --card: rgba(255, 255, 255, 0.03);
+  --accent: #a09a93;
+  --muted: #78736d;
+  --card: rgba(255, 255, 255, 0.04);
   --card-border: rgba(255, 255, 255, 0.06);
   --sidebar-bg: rgba(18, 18, 18, 0.9);
+  --radius: 0.625rem;
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #a09a93;
 }
 
 /* ---------- Light mode ---------- */
@@ -37,6 +49,9 @@
   --card: rgba(255, 255, 255, 0.55);
   --card-border: rgba(0, 0, 0, 0.06);
   --sidebar-bg: rgba(242, 239, 233, 0.9);
+  --border: rgba(0, 0, 0, 0.06);
+  --input: rgba(0, 0, 0, 0.06);
+  --ring: #78736d;
 }
 
 /* ---------- Base ---------- */
@@ -45,9 +60,9 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
   transition: background-color 0.4s ease, color 0.4s ease;
   overflow: hidden;
   height: 100vh;
