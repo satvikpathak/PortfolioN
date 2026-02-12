@@ -16,7 +16,6 @@ export default function HomeSection() {
     <div className="space-y-8">
       {/* Welcome / About */}
       <div className="max-w-2xl space-y-4">
-        <h2 className="text-2xl sm:text-3xl font-semibold">About Me</h2>
         <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--muted)" }}>
           I&apos;m a <strong style={{ color: "var(--foreground)" }}>Full Stack Developer</strong> focused
           on building scalable, real-world digital solutions. As a{" "}

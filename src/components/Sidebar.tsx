@@ -28,7 +28,7 @@ const navLinks: NavItem[] = [
   { label: "Home", id: "home", icon: HiHome },
   { label: "Tech Stack", id: "techstack", icon: HiCode },
   { label: "Projects", id: "projects", icon: HiFolder },
-  { label: "Experience", id: "experience", icon: HiStar },
+  { label: "Info & Achievements", id: "experience", icon: HiStar },
   { label: "Certificates", id: "certificates", icon: HiAcademicCap },
   { label: "Contact", id: "contact", icon: HiMail },
 ];

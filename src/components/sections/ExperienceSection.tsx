@@ -13,43 +13,42 @@ interface TimelineItem {
 
 const timeline: TimelineItem[] = [
   {
-    icon: HiAcademicCap,
-    title: "B.Tech — Computer Science & Engineering",
-    subtitle: "2nd Year • Undergraduate",
+    icon: HiStar,
+    title: "IPD Expo Winner — 2024 & 2025",
+    subtitle: "CCET, Sector 26, Chandigarh",
     description:
-      "Building a strong foundation in programming languages like C, C++, JavaScript, and Python. Continuously improving skills in Data Structures and Algorithms (DSA) while diving into backend development with Node.js and the MERN stack.",
-    period: "2023 – Present",
-  },
-  {
-    icon: HiCode,
-    title: "MERN Stack Development",
-    subtitle: "Full Stack Web Development",
-    description:
-      "Focused on mastering the MERN stack (MongoDB, Express, React, Node.js). Building real-world projects including ecommerce layouts, hackathon platforms, and interactive web applications.",
-    period: "2024 – Present",
+      "Won the IPD Expo consecutively in 2024 and 2025 at Chandigarh College of Engineering & Technology (CCET), Sector 26, Chandigarh.",
+    period: "2024 – 2025",
   },
   {
     icon: HiStar,
-    title: "Open Source & Problem Solving",
-    subtitle: "GitHub • LeetCode",
+    title: "CyberthonAI — National Hackathon Winner",
+    subtitle: "1st Place out of 82 Teams",
     description:
-      "Actively contributing to GitHub with exciting projects and practicing problem-solving on LeetCode. Enjoy building innovative solutions and learning new technologies to stay ahead in the fast-paced tech world.",
-    period: "2024 – Present",
+      "Won CyberthonAI, a national-level hackathon organized by Infosys in collaboration with PEC-CRC and Chandigarh Police. Secured 1st place competing against 82 teams from across the country.",
+    period: "2025",
+  },
+  {
+    icon: HiCode,
+    title: "Full Stack Intern — DRDO, Jodhpur",
+    subtitle: "Defence Research & Development Organisation",
+    description:
+      "Completed a one-month remote internship as a Full Stack Developer at DRDO Jodhpur, working on internal tools and web applications for defence research operations.",
+    period: "2025",
+  },
+  {
+    icon: HiAcademicCap,
+    title: "B.Tech — Computer Science & Engineering",
+    subtitle: "3rd Year • Undergraduate",
+    description:
+      "Building a strong foundation in C, C++, JavaScript, and Python. Continuously improving skills in Data Structures & Algorithms while diving into full-stack development with Next.js and the MERN stack.",
+    period: "2023 – Present",
   },
 ];
 
 export default function ExperienceSection() {
   return (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-          Achievements & <span className="gradient-text">Education</span>
-        </h1>
-        <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
-          My academic journey and milestones.
-        </p>
-      </div>
-
+    <div className="space-y-6">
       <div className="relative">
         <div
           className="absolute left-[11px] top-2 bottom-2 w-px"

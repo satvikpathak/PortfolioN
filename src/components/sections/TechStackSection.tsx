@@ -1,48 +1,57 @@
 "use client";
 
 import { IconCloud } from "@/components/ui/icon-cloud";
+import { useTheme } from "@/components/ThemeProvider";
 
 const slugs = [
+  // Frontend
+  "nextdotjs",
+  "react",
+  "typescript",
+  "javascript",
   "html5",
   "css3",
-  "javascript",
   "tailwindcss",
-  "bootstrap",
-  "react",
+  "shadcnui",
+  "framer",
+  // Backend
   "nodedotjs",
+  "express",
+  "prisma",
+  // Databases
+  "mongodb",
+  "mysql",
+  "postgresql",
+  "neon",
+  // DevOps & Cloud
+  "docker",
+  "amazonaws",
+  "vercel",
+  // AI / Research
+  "python",
+  "tensorflow",
+  // Core CS
+  "cplusplus",
+  "leetcode",
+  // Environment & Tools
   "git",
   "github",
-  "cplusplus",
-  "c",
-  "python",
-  "wordpress",
-  "nextdotjs",
-  "prisma",
-  "mongodb",
-  "typescript",
-  "postgresql",
-  "vercel",
+  "linux",
+  "windows11",
+  "vmware",
 ];
 
 export default function TechStackSection() {
+  const { theme } = useTheme();
+  const iconColor = theme === "light" ? "1a1816" : "e8e4de";
+
   const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
+    (slug) => `https://cdn.simpleicons.org/${slug}/${iconColor}`
   );
 
   return (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-          Tech <span className="gradient-text">Stack</span> & Tools
-        </h1>
-        <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
-          The technologies and tools I use to bring ideas to life.
-        </p>
-      </div>
-
-      <div className="relative flex size-full items-center justify-center overflow-hidden">
-        <IconCloud images={images} />
-      </div>
+    <div className="relative flex w-full h-[calc(100vh-200px)] items-center justify-center overflow-hidden -mt-4">
+      <IconCloud images={images} />
     </div>
   );
 }

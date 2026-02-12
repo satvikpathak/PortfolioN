@@ -41,17 +41,17 @@
 /* ---------- Light mode ---------- */
 .light {
   --background: #f2efe9;
-  --foreground: #2c2a27;
-  --primary: #3d3a36;
-  --primary-light: #5c5955;
-  --accent: #78736d;
-  --muted: #a09a93;
+  --foreground: #1a1816;
+  --primary: #2a2724;
+  --primary-light: #3d3a36;
+  --accent: #4a463f;
+  --muted: #6b6560;
   --card: rgba(255, 255, 255, 0.55);
-  --card-border: rgba(0, 0, 0, 0.06);
+  --card-border: rgba(0, 0, 0, 0.08);
   --sidebar-bg: rgba(242, 239, 233, 0.9);
-  --border: rgba(0, 0, 0, 0.06);
-  --input: rgba(0, 0, 0, 0.06);
-  --ring: #78736d;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #4a463f;
 }
 
 /* ---------- Base ---------- */

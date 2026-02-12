@@ -33,7 +33,12 @@ export default function ContactSection() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("Message sent! I'll get back to you soon.");
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    window.open(`mailto:satvikpathak007@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    setStatus("Opening your email client...");
     setFormData({ name: "", email: "", message: "" });
     setTimeout(() => setStatus(""), 4000);
   };
@@ -43,16 +48,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div className="space-y-10 max-w-2xl">
-      <div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-          Get In <span className="gradient-text">Touch</span>
-        </h1>
-        <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
-          Have a project in mind or just want to connect? Drop me a message.
-        </p>
-      </div>
-
+    <div className="space-y-8 max-w-2xl">
       <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 sm:p-8 space-y-5">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
@@ -90,7 +86,7 @@ export default function ContactSection() {
           <textarea
             id="message" name="message" required rows={5}
             value={formData.message} onChange={handleChange}
-            placeholder="Tell me about your project..."
+            placeholder="Contact to know more..."
             className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none transition-all duration-300
                        focus:ring-2 focus:ring-[var(--primary)]/50"
             style={{ background: "var(--card)", border: "1px solid var(--card-border)", color: "var(--foreground)" }}

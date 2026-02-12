@@ -10,24 +10,15 @@ interface Certificate {
 }
 
 const certificates: Certificate[] = [
-  { title: "AWS Cloud Practitioner", issuer: "Amazon Web Services", date: "2024", link: "#" },
-  { title: "Full-Stack Web Development", issuer: "Udemy", date: "2024", link: "#" },
-  { title: "Machine Learning Specialization", issuer: "Coursera", date: "2024", link: "#" },
-  { title: "Data Structures & Algorithms", issuer: "GeeksforGeeks", date: "2023", link: "#" },
+  { title: "CyberthonAI Hackathon", issuer: "National Level AI Hackathon", date: "2025", link: "#" },
+  { title: "DRDO Internship", issuer: "Defence Research & Development Organisation", date: "2025", link: "#" },
+  { title: "Full Stack Web Development", issuer: "Udemy", date: "2024", link: "#" },
+  { title: "C++ Programming Certificate", issuer: "Coursera", date: "2024", link: "#" },
 ];
 
 export default function CertificatesSection() {
   return (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-          <span className="gradient-text">Certificates</span> & Credentials
-        </h1>
-        <p className="text-sm sm:text-base mt-3" style={{ color: "var(--muted)" }}>
-          Professional certifications and completed courses.
-        </p>
-      </div>
-
+    <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {certificates.map((cert) => (
           <a
