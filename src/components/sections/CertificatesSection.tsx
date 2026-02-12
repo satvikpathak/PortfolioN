@@ -33,18 +33,18 @@ export default function CertificatesSection() {
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center mb-4
                          transition-transform duration-300 group-hover:scale-110"
-              style={{ background: "linear-gradient(135deg, var(--primary), var(--accent))" }}
+              style={{ background: "linear-gradient(135deg, var(--foreground), var(--accent))" }}
             >
-              <HiExternalLink className="w-5 h-5 text-white" />
+              <HiExternalLink className="w-5 h-5" style={{ color: "var(--background)" }} />
             </div>
 
-            <h3 className="text-sm font-bold mb-1" style={{ color: "var(--foreground)" }}>
+            <h3 className="text-sm sm:text-base font-bold mb-1" style={{ color: "var(--foreground)" }}>
               {cert.title}
             </h3>
-            <p className="text-xs mb-1" style={{ color: "var(--primary)" }}>
+            <p className="text-xs sm:text-sm mb-1" style={{ color: "var(--foreground)", opacity: 0.7 }}>
               {cert.issuer}
             </p>
-            <p className="text-xs font-mono" style={{ color: "var(--muted)" }}>
+            <p className="text-xs font-mono" style={{ color: "var(--foreground)", opacity: 0.5 }}>
               {cert.date}
             </p>
           </a>

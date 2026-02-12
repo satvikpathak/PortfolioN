@@ -52,10 +52,10 @@ export default function ClientShell() {
           transition={{ layout: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } }}
         >
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-            <span className="gradient-text">Satvik Pathak</span>
+            <span style={{ color: "var(--foreground)" }}>Satvik Pathak</span>
           </h1>
           <p className="text-sm sm:text-base mt-1.5" style={{ color: "var(--muted)" }}>
-            Developer
+            Developer and coding enthusiast
           </p>
         </motion.div>
 

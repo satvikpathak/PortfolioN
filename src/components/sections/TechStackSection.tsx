@@ -50,7 +50,8 @@ export default function TechStackSection() {
   );
 
   return (
-    <div className="relative flex w-full h-[calc(100vh-200px)] items-center justify-center overflow-hidden -mt-4">
+    <div className="relative flex w-full items-center justify-center overflow-hidden"
+         style={{ height: "calc(100vh - 220px)" }}>
       <IconCloud images={images} />
     </div>
   );

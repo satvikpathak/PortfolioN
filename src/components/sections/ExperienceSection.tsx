@@ -60,24 +60,24 @@ export default function ExperienceSection() {
             <div key={item.title} className="relative pl-10">
               <div
                 className="absolute left-0 top-1.5 w-[23px] h-[23px] rounded-full flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, var(--primary), var(--accent))" }}
+                style={{ background: "linear-gradient(135deg, var(--foreground), var(--accent))" }}
               >
-                <item.icon className="w-3 h-3 text-white" />
+                <item.icon className="w-3 h-3" style={{ color: "var(--background)" }} />
               </div>
 
               <div className="glass rounded-xl p-5">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1.5">
-                  <h3 className="text-base font-bold" style={{ color: "var(--foreground)" }}>
+                  <h3 className="text-sm sm:text-base font-bold" style={{ color: "var(--foreground)" }}>
                     {item.title}
                   </h3>
-                  <span className="text-xs font-mono mt-1 sm:mt-0" style={{ color: "var(--primary)" }}>
+                  <span className="text-xs font-mono mt-1 sm:mt-0" style={{ color: "var(--foreground)", opacity: 0.6 }}>
                     {item.period}
                   </span>
                 </div>
-                <p className="text-xs font-medium mb-2" style={{ color: "var(--primary)" }}>
+                <p className="text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--foreground)", opacity: 0.7 }}>
                   {item.subtitle}
                 </p>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.55 }}>
                   {item.description}
                 </p>
               </div>

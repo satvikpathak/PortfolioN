@@ -63,7 +63,7 @@ export default function ProjectsSection() {
           >
             <div
               className="h-1 w-full"
-              style={{ background: "linear-gradient(90deg, var(--primary), var(--accent))" }}
+              style={{ background: "linear-gradient(90deg, var(--foreground), var(--accent))" }}
             />
 
             {/* Project screenshot or placeholder */}
@@ -85,17 +85,17 @@ export default function ProjectsSection() {
                 className="w-full h-44 flex items-center justify-center"
                 style={{ background: "var(--card)", borderBottom: "1px solid var(--card-border)" }}
               >
-                <span className="text-xs font-mono tracking-wider uppercase" style={{ color: "var(--muted)" }}>
+                <span className="text-xs font-mono tracking-wider uppercase" style={{ color: "var(--foreground)", opacity: 0.4 }}>
                   Currently Under Development
                 </span>
               </div>
             )}
 
             <div className="p-5 sm:p-6 flex flex-col flex-1">
-              <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-[var(--primary)] transition-colors">
+              <h3 className="text-base sm:text-lg font-bold mb-2 group-hover:opacity-80 transition-opacity" style={{ color: "var(--foreground)" }}>
                 {project.title}
               </h3>
-              <p className="text-xs sm:text-sm leading-relaxed mb-4 flex-1" style={{ color: "var(--muted)" }}>
+              <p className="text-xs sm:text-sm leading-relaxed mb-4 flex-1" style={{ color: "var(--foreground)", opacity: 0.6 }}>
                 {project.description}
               </p>
 
@@ -103,11 +103,12 @@ export default function ProjectsSection() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-full"
+                    className="text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded-full"
                     style={{
                       background: "var(--card)",
                       border: "1px solid var(--card-border)",
-                      color: "var(--primary)",
+                      color: "var(--foreground)",
+                      opacity: 0.7,
                     }}
                   >
                     {tag}
@@ -122,8 +123,8 @@ export default function ProjectsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg
-                               transition-all duration-300 hover:scale-105 text-white"
-                    style={{ background: "linear-gradient(135deg, var(--primary), var(--accent))" }}
+                               transition-all duration-300 hover:scale-105"
+                    style={{ background: "var(--foreground)", color: "var(--background)" }}
                   >
                     <HiExternalLink className="w-3.5 h-3.5" /> Live Demo
                   </a>

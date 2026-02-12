@@ -16,7 +16,7 @@ export default function HomeSection() {
     <div className="space-y-8">
       {/* Welcome / About */}
       <div className="max-w-2xl space-y-4">
-        <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+        <p className="text-sm sm:text-base md:text-lg leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.75 }}>
           I&apos;m a <strong style={{ color: "var(--foreground)" }}>Full Stack Developer</strong> focused
           on building scalable, real-world digital solutions. As a{" "}
           <strong style={{ color: "var(--foreground)" }}>National Hackathon Winner</strong>, I design
@@ -37,20 +37,20 @@ export default function HomeSection() {
             aria-label={s.label}
             className="p-3 rounded-xl glass transition-all duration-300
                        hover:scale-110 hover:shadow-lg hover:shadow-[var(--primary)]/15"
-            style={{ color: "var(--muted)" }}
+            style={{ color: "var(--foreground)", opacity: 0.6 }}
           >
-            <s.icon className="w-5 h-5 hover:text-[var(--primary)] transition-colors" />
+            <s.icon className="w-5 h-5 sm:w-6 sm:h-6 hover:opacity-100 transition-opacity" />
           </a>
         ))}
       </div>
 
       {/* Contact teaser */}
       <div className="pt-4">
-        <h3 className="text-lg font-semibold mb-2">Contact Me</h3>
+        <h3 className="text-base sm:text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>Contact Me</h3>
         <a
           href="mailto:satvikpathak007@gmail.com"
-          className="text-sm transition-colors duration-200 hover:text-[var(--primary)]"
-          style={{ color: "var(--muted)" }}
+          className="text-sm sm:text-base transition-colors duration-200 hover:text-[var(--foreground)]"
+          style={{ color: "var(--foreground)", opacity: 0.6 }}
         >
           satvikpathak007@gmail.com
         </a>

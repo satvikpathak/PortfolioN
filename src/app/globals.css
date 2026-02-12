@@ -27,15 +27,15 @@
   --foreground: #e8e4de;
   --primary: #d4d0c8;
   --primary-light: #e8e4de;
-  --accent: #a09a93;
-  --muted: #78736d;
+  --accent: #b0aaa3;
+  --muted: #908a83;
   --card: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.08);
   --sidebar-bg: rgba(18, 18, 18, 0.9);
   --radius: 0.625rem;
-  --border: rgba(255, 255, 255, 0.06);
-  --input: rgba(255, 255, 255, 0.06);
-  --ring: #a09a93;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #b0aaa3;
 }
 
 /* ---------- Light mode ---------- */
@@ -45,12 +45,12 @@
   --primary: #2a2724;
   --primary-light: #3d3a36;
   --accent: #4a463f;
-  --muted: #6b6560;
+  --muted: #504b46;
   --card: rgba(255, 255, 255, 0.55);
-  --card-border: rgba(0, 0, 0, 0.08);
+  --card-border: rgba(0, 0, 0, 0.10);
   --sidebar-bg: rgba(242, 239, 233, 0.9);
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.10);
+  --input: rgba(0, 0, 0, 0.10);
   --ring: #4a463f;
 }
 
