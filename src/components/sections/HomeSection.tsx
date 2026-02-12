@@ -18,18 +18,12 @@ export default function HomeSection() {
       <div className="max-w-2xl space-y-4">
         <h2 className="text-2xl sm:text-3xl font-semibold">About Me</h2>
         <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-          I am an undergrad CSE student with a strong passion for building{" "}
-          <strong style={{ color: "var(--foreground)" }}>efficient and scalable web applications</strong>.
-          Having learnt front-end technologies like React, HTML, CSS, and JavaScript, along with
-          backend technologies such as Node.js and MongoDB, I focus on creating robust solutions
-          that deliver seamless user experiences.
-        </p>
-        <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-          Currently, I&apos;m honing my skills in the{" "}
-          <strong style={{ color: "var(--foreground)" }}>MERN stack and DSA</strong>, aiming to
-          master full stack development and make meaningful contributions to impactful projects.
-          My goal is to continuously evolve my skills and craft innovative applications that
-          solve real-world problems.
+          I&apos;m a <strong style={{ color: "var(--foreground)" }}>Full Stack Developer</strong> focused
+          on building scalable, real-world digital solutions. As a{" "}
+          <strong style={{ color: "var(--foreground)" }}>National Hackathon Winner</strong>, I design
+          and develop <strong style={{ color: "var(--foreground)" }}>complete web applications</strong>, from intuitive frontends to robust backend
+          architectures, delivering <strong style={{ color: "var(--foreground)" }}>high-performance products</strong> that prioritize usability,
+          efficiency, and impact.
         </p>
       </div>
 

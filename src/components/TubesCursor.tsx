@@ -17,8 +17,6 @@ export default function TubesCursor() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    // Only run in dark mode
-    if (theme === "light") return;
     if (!canvasRef.current) return;
 
     let destroyed = false;
@@ -62,9 +60,8 @@ export default function TubesCursor() {
         appRef.current = null;
       }
     };
-  }, [theme]);
-
-  if (theme === "light") return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <canvas

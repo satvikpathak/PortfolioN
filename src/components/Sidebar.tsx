@@ -38,10 +38,13 @@ export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
 
   return (
     <>
-      {/* ── Desktop: floating bullet nav on the left ── */}
+      {/* ── Desktop: floating bullet nav ── */}
       <aside className="hidden md:flex fixed top-0 left-0 h-full z-50 flex-col justify-between py-10 px-5 w-48">
-        {/* Nav items — clean bullets, no background panel */}
-        <nav className="mt-6 flex flex-col gap-1">
+        {/* Top spacer to balance bottom */}
+        <div className="h-20" />
+
+        {/* Nav items — visually centered */}
+        <nav className="flex flex-col gap-1">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -56,7 +59,6 @@ export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
                       : "text-[var(--muted)] hover:text-[var(--foreground)]"
                   }`}
               >
-                {/* Bullet dot */}
                 <span
                   className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-200"
                   style={{
@@ -70,7 +72,7 @@ export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
           })}
         </nav>
 
-        {/* Theme toggle */}
+        {/* Theme toggle — pinned at bottom */}
         <div className="flex flex-col items-start gap-2">
           <button
             onClick={toggleTheme}
@@ -90,14 +92,15 @@ export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
               </>
             )}
           </button>
-          {theme === "light" && (
-            <span
-              className="text-[9px] leading-tight px-3 opacity-50"
-              style={{ color: "var(--muted)" }}
-            >
-              Switch to dark mode for best experience
-            </span>
-          )}
+          {/* Always rendered, opacity toggles — prevents layout shift */}
+          <span
+            className={`text-[9px] leading-tight px-3 transition-opacity duration-200 ${
+              theme === "light" ? "opacity-50" : "opacity-0"
+            }`}
+            style={{ color: "var(--muted)" }}
+          >
+            Switch to dark mode for best experience
+          </span>
         </div>
       </aside>
 
