@@ -11,9 +11,9 @@ interface Certificate {
 
 const certificates: Certificate[] = [
   { title: "CyberthonAI Hackathon", issuer: "National Level AI Hackathon", date: "2025", link: "#" },
-  { title: "DRDO Internship", issuer: "Defence Research & Development Organisation", date: "2025", link: "#" },
-  { title: "Full Stack Web Development", issuer: "Udemy", date: "2025", link: "/udemy.pdf" },
-  { title: "C++ Programming Certificate", issuer: "Tutedude", date: "2024", link: "#" },
+  { title: "DRDO Internship", issuer: "Defence Research & Development Organisation", date: "2025", link: "/drdo.pdf" },
+  { title: "Full Stack Web Development", issuer: "Udemy", date: "2024", link: "/udemy.pdf" },
+  { title: "C++ Programming Certificate", issuer: "Coursera", date: "2024", link: "#" },
 ];
 
 export default function CertificatesSection() {
