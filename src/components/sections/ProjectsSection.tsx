@@ -56,7 +56,7 @@ const projects: Project[] = [
       "AI-powered Gmail helper that provides intelligent email management, smart replies, and inbox organization.",
     tags: ["Next.js", "TypeScript", "Gemini AI", "Gmail API", "Tailwind CSS"],
     liveUrl: "https://email-assistant-roan.vercel.app/",
-    image: "/projects/email-assistant.png",
+    image: "/projects/email.png",
   },
 ];
 
