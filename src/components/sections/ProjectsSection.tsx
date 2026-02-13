@@ -22,6 +22,14 @@ const projects: Project[] = [
     image: "/projects/carrec.png",
   },
   {
+    title: "Cryptex (Frontend)",
+    description:
+      "Frontend for Cryptex — a crypto dashboard and portfolio manager (frontend).",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://cryptex-qcef09hxg-satvik-pathaks-projects.vercel.app/",
+    image: "/projects/cryptex.png",
+  },
+  {
     title: "EntreConnect",
     description:
       "Empowering young startup founders with mentorship, industry connections, and AI-driven growth tools.",
