@@ -19,7 +19,7 @@ const projects: Project[] = [
       "Full-stack GenAI career platform using AWS S3 for storage, built as a full-stack GenAI application.",
     tags: ["Next.js", "TypeScript", "AWS S3", "Full-stack"],
     liveUrl: "https://careeros-smoky.vercel.app/",
-    image: "/projects/careeros.png",
+    image: "/projects/career.png",
   },
   {
     title: "Career Pathfinder (Frontend)",
@@ -36,6 +36,14 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://cryptex-qcef09hxg-satvik-pathaks-projects.vercel.app/",
     image: "/projects/cryptex.png",
+  },
+  {
+    title: "eCom dashboard (Full stack)",
+    description:
+      "AI-driven career guidance platform that analyzes skills, suggests learning paths, and provides personalized career recommendations.",
+    tags: ["Next.js", "TypeScript", "Pusher", "SWR"],
+    liveUrl: "https://amboras-assigment-uhuu.vercel.app/",
+    image: "/projects/dashboard.png",
   },
   {
     title: "EntreConnect",
