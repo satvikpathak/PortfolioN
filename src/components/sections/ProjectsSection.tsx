@@ -63,7 +63,7 @@ const projects: Project[] = [
     description:
       "A fully functioning talent sharing and hackathon locating website at your disposal.",
     tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-    liveUrl: "https://hc-frontend-five.vercel.app/",
+    liveUrl: "https://hackathon-club-frontend.vercel.app/",
     image: "/projects/hack.png",
   },
   {
