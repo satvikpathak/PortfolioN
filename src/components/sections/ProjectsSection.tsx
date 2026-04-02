@@ -42,7 +42,7 @@ const projects: Project[] = [
     description:
       "AI-driven career guidance platform that analyzes skills, suggests learning paths, and provides personalized career recommendations.",
     tags: ["Next.js", "TypeScript", "Pusher", "SWR"],
-    liveUrl: "https://amboras-assigment-uhuu.vercel.app/",
+    liveUrl: "https://dashboard-ecom-uhuu.vercel.app/login",
     image: "/projects/dashboard.png",
   },
   {
