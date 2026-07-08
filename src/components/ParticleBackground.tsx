@@ -43,7 +43,7 @@ export default function ParticleBackground() {
           size: Math.random() * 2 + 0.5,
           speedX: (Math.random() - 0.5) * 0.5,
           speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
+          opacity: Math.random() * 0.6 + 0.4,
         });
       }
       return particles;
@@ -53,7 +53,7 @@ export default function ParticleBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const isDark = theme === "dark";
-      const particleColor = isDark ? "156, 163, 175" : "107, 114, 128";
+      const particleColor = isDark ? "240, 240, 245" : "107, 114, 128";
       const connectionColor = isDark ? "75, 85, 99" : "156, 163, 175";
 
       particlesRef.current.forEach((particle, i) => {

@@ -14,7 +14,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Careeros",
+    title: "Cresco",
     description:
       "Full-stack GenAI career platform using AWS S3 for storage, built as a full-stack GenAI application.",
     tags: ["Next.js", "TypeScript", "AWS S3", "Full-stack"],
