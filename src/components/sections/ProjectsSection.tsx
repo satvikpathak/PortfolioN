@@ -25,7 +25,7 @@ const projects: Project[] = [
     title: "Career Pathfinder (Frontend)",
     description:
       "AI-driven career guidance platform that analyzes skills, suggests learning paths, and provides personalized career recommendations.",
-    tags: ["Next.js", "TypeScript", "Gemini AI", "Prisma", "Tailwind CSS"],
+    tags: ["Next.js", "TypeScript", "Gemini AI", "Prisma", "Tailwind"],
     liveUrl: "https://carrec-sigma.vercel.app/",
     image: "/projects/carrec.png",
   },
